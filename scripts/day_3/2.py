@@ -1,22 +1,26 @@
 class Lobby:
     def __init__(self):
         self.total_joltage = 0
+        self.num_digits = 12
 
     def get_joltage(self, battery: str):
-        digit_1 = max(battery)
-        index_1 = battery.index(digit_1)
+        joltage = [0 for _ in range(self.num_digits)]
 
-        if index_1 == (len(battery) - 1):
-            digit_2 = digit_1
-            battery = battery[:index_1]
-            digit_1 = max(battery)
+        current_index = 0
+        while current_index < self.num_digits:
+            num_digits = self.num_digits - current_index
+            digit_list = sorted(set(battery), reverse=True)
+            for max_digit in digit_list:
+                max_index = battery.index(max_digit)
 
-        else:
-            battery = battery[index_1 + 1 :]
-            digit_2 = max(battery)
+                if len(battery) - max_index >= num_digits:
+                    joltage[current_index] = max_digit
+                    battery = battery[max_index + 1 :]
+                    current_index += 1
+                    break
 
-        joltage = int(digit_1 + digit_2)
-        self.total_joltage += joltage
+        final_joltage = "".join(joltage)
+        return final_joltage
 
     def read_input(self):
         with open("input/day_3.txt", "r") as f:
@@ -27,7 +31,8 @@ class Lobby:
     def get_total_output(self):
         batteries = self.read_input()
         for battery in batteries:
-            self.get_joltage(battery.strip())
+            final_joltage = self.get_joltage(battery.strip())
+            self.total_joltage += int(final_joltage)
 
         print(self.total_joltage)
 
