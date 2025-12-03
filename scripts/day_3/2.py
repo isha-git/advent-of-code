@@ -20,9 +20,9 @@ class Lobby:
                     break
 
         final_joltage = "".join(joltage)
-        return final_joltage
+        self.total_joltage += int(final_joltage)
 
-    def read_input(self):
+    def read_input(self) -> list:
         with open("input/day_3.txt", "r") as f:
             batteries = f.readlines()
 
@@ -31,8 +31,7 @@ class Lobby:
     def get_total_output(self):
         batteries = self.read_input()
         for battery in batteries:
-            final_joltage = self.get_joltage(battery.strip())
-            self.total_joltage += int(final_joltage)
+            self.get_joltage(battery.strip())
 
         print(self.total_joltage)
 
