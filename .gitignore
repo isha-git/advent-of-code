@@ -7,7 +7,7 @@ wheels/
 *.egg-info
 
 .ruff_cache
-uv.lock
+input/
 
 # Virtual environments
 .venv
