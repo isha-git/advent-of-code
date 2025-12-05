@@ -10,7 +10,7 @@ class Ingredients:
                     self.fresh_count += 1
                     break
 
-    def read_input(self):
+    def read_input(self) -> list:
         with open("input/day_5.txt", "r") as f:
             data = f.readlines()
 
