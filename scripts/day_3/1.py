@@ -18,7 +18,7 @@ class Lobby:
         joltage = int(digit_1 + digit_2)
         self.total_joltage += joltage
 
-    def read_input(self):
+    def read_input(self) -> list:
         with open("input/day_3.txt", "r") as f:
             batteries = f.readlines()
 

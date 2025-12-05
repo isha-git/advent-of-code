@@ -16,7 +16,7 @@ def get_new_location(
     return current, zero_count
 
 
-def get_password():
+def get_password() -> int:
     start = 50
     current = start
     upper_limit = 100

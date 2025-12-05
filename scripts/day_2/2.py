@@ -3,7 +3,7 @@ class GiftShop:
         self.input_path = "input/day_2.txt"
         self.invalid_total = 0
 
-    def possible_invalid_length(self, number_length):
+    def possible_invalid_length(self, number_length) -> list:
         possible_lengths = []
         for i in range(1, int(number_length)):
             if number_length % i == 0:
@@ -11,7 +11,7 @@ class GiftShop:
 
         return possible_lengths
 
-    def find_invalid(self, left: str, right: str):
+    def find_invalid(self, left: str, right: str) -> set[int]:
         invalid_values = set()
 
         chunk_sizes = [len(left)]
