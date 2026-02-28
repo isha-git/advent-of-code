@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-This script checks if a number is prime, even or odd, and whether it is less than 100.
+This script checks if a number is prime, even or odd, and whether it's less than 100.
 """
 
 def is_prime(n):
@@ -25,12 +25,17 @@ def is_less_than_hundred(n):
     return n < 100
 
 def main():
+    """Main function to check number properties."""
     try:
         num = int(input("Enter a number: "))
-        prime_status = "prime" if is_prime(num) else "not prime"
-        even_odd_status = "even" if is_even(num) else "odd"
-        hundred_status = "less than 100" if is_less_than_hundred(num) else "100 or more"
-        print(f"The number {num} is {prime_status}, {even_odd_status}, and {hundred_status}.")
+        prime = is_prime(num)
+        even = is_even(num)
+        less_than_hundred = is_less_than_hundred(num)
+        
+        print(f"Number: {num}")
+        print(f"Prime: {'Yes' if prime else 'No'}")
+        print(f"Even: {'Yes' if even else 'No'}")
+        print(f"Less than 100: {'Yes' if less_than_hundred else 'No'}")
     except ValueError:
         print("Invalid input. Please enter a valid integer.")
 
