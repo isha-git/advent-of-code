@@ -1,41 +1,38 @@
-def check_number(n):
-    """Check if a number is prime, even/odd, and if it's less than 100."""
-    
-    # Check if the number is even or odd
-    if n % 2 == 0:
-        even_odd = "even"
-    else:
-        even_odd = "odd"
-    
-    # Check if the number is less than 100
-    less_than_hundred = n < 100
-    
-    # Check if the number is prime
-    if n <= 1:
-        is_prime = False
-    elif n == 2:
-        is_prime = True
-    else:
-        is_prime = True
-        for i in range(2, int(n ** 0.5) + 1):
-            if n % i == 0:
-                is_prime = False
-                break
-    
-    return {
-        "number": n,
-        "even_odd": even_odd,
-        "less_than_hundred": less_than_hundred,
-        "is_prime": is_prime
-    }
+#!/usr/bin/env python3
+"""
+This script checks if a number is prime, even or odd, and whether it is less than 100.
+"""
 
-if __name__ == "__main__":
+def is_prime(n):
+    """Check if a number is prime."""
+    if n <= 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(n**0.5) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
+
+def is_even(n):
+    """Check if a number is even."""
+    return n % 2 == 0
+
+def is_less_than_hundred(n):
+    """Check if a number is less than 100."""
+    return n < 100
+
+def main():
     try:
         num = int(input("Enter a number: "))
-        result = check_number(num)
-        print(f"\nResults for {result['number']}:")
-        print(f"- Even/Odd: {result['even_odd']}")
-        print(f"- Less than 100: {'Yes' if result['less_than_hundred'] else 'No'}")
-        print(f"- Prime: {'Yes' if result['is_prime'] else 'No'}")
+        prime_status = "prime" if is_prime(num) else "not prime"
+        even_odd_status = "even" if is_even(num) else "odd"
+        hundred_status = "less than 100" if is_less_than_hundred(num) else "100 or more"
+        print(f"The number {num} is {prime_status}, {even_odd_status}, and {hundred_status}.")
     except ValueError:
         print("Invalid input. Please enter a valid integer.")
+
+if __name__ == "__main__":
+    main()
