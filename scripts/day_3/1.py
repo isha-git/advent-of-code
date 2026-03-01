@@ -3,28 +3,55 @@ class Lobby:
         self.total_joltage = 0
 
     def get_joltage(self, battery: str):
-        digit_1 = max(battery)
-        index_1 = battery.index(digit_1)
+        """
+        Calculate the joltage for a given battery ID.
+        
+        Args:
+            battery: Battery ID string.
+        """
+        try:
+            if not battery:
+                print("Error: Empty battery ID.")
+                return
 
-        if index_1 == (len(battery) - 1):
-            digit_2 = digit_1
-            battery = battery[:index_1]
             digit_1 = max(battery)
+            index_1 = battery.index(digit_1)
 
-        else:
-            battery = battery[index_1 + 1 :]
-            digit_2 = max(battery)
+            if index_1 == (len(battery) - 1):
+                digit_2 = digit_1
+                battery = battery[:index_1]
+                digit_1 = max(battery)
 
-        joltage = int(digit_1 + digit_2)
-        self.total_joltage += joltage
+            else:
+                battery = battery[index_1 + 1 :]
+                digit_2 = max(battery)
+
+            joltage = int(digit_1 + digit_2)
+            self.total_joltage += joltage
+        except Exception as e:
+            print(f"Error calculating joltage: {e}")
 
     def read_input(self) -> list:
-        with open("input/day_3.txt", "r") as f:
-            batteries = f.readlines()
+        """
+        Read input from the file.
+        
+        Returns:
+            List of battery IDs.
+        """
+        try:
+            with open("input/day_3.txt", "r") as f:
+                batteries = f.readlines()
 
-        return batteries
+            return batteries
+        except FileNotFoundError:
+            print("Error: Input file not found.")
+            return []
+        except Exception as e:
+            print(f"Error reading file: {e}")
+            return []
 
     def get_total_output(self):
+        """Calculate the total joltage for all batteries."""
         batteries = self.read_input()
         for battery in batteries:
             self.get_joltage(battery.strip())
