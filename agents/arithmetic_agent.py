@@ -6,7 +6,7 @@ each capable of performing different basic arithmetic operations.
 """
 
 import concurrent.futures
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Tuple
 from dataclasses import dataclass
 import threading
 import random
